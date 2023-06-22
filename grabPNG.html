@@ -1,0 +1,86 @@
+<html>
+   <head>
+      <title></title>
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+      <script>
+        $(function() {
+            let link_part_1 = "https://www.flaticon.com/download/icon/";
+            let link_part_2 = "?icon_id=";
+            let link_part_3 = "&team=399&keyword=Farming&pack=2917605&style=0&style_id=1032&format=png&color=%23000000&colored=1&size=512&selection=1&type=standard";
+            let link_part_4 = "&token=";
+            let token_part_5 = "03AL8dmw-OO7sLES5nyNvg5w0HMeULIpDQjw5Idc4qVnZMNjKePWGBkzMa5JoeE9SYOQ2JKeA_MwZpO8Fr5baUqLw02A3GZuTwyQt1HcX6iRWTCcbvaQKrbau5twJ7UwUWagHbdQK_Sj5sLdzKs8Rcv2CwlOhnyoaSdiCC89l3vcC7FM3iAHgyHGJSNUemipjKuANh3yH0EegG3cniwAcxrp06r1i2Z5lSKWFn9_NKPb9L0GDt-nzTKipYsnZ2nqZj4s2c79mLGXeYNQKaziaQ4jyiMZ7xAGyK4fHVV4aUEdwZaWhb9ouH8Pn6rfwOzOFSG2nN_0SpH-3hAQ1VgBVJpH7DF-d9FqCNIHzEZIVBSLbW5rf9_6h4yWLYDZI2WxvI-keANw3ul63FcJ_7xCALTFjB9evnbivScSK1QhyRh5eiK2wSoJEA7ObYfhQKw8ER0OS3ZApT0LMiOb8RS40yJix_3fNBdHXlw8hr_5cRDyoqMAuN0jbY_i_W4Up2pJ2ih8oTua0XniH_sWp5DJD_XWwSfWh2dOSKOFH_mPBRgB_DCFUAoJWrk1i7dLqUlgwnFfJKU4epCCiXgm--1bfigZqZWSSvgfd73A3mR1Tb3g6y6eUC-eZ3l1wVNzIDTu8VAZTs88Wy4fcJNwbxU2jH5NPyUo5m8PZiBEmiJOErmWp243F89XpDmq5BVwdP80WeEzadbmDXqCHdbAhUx0S9fP2KBlaR1mLW29_IMazBbVVk8Q-5wHvrYh1eBIjfc6Dqs8u-MV48-L5KeCfFfHmCTivx9sr97F1mMA2oqCNEfteDMRVnY36op_TRYDVkGQ8500Pa56YpYA_ElNhHsvgrtNpWkUqOamJvQppyxmWsDC86IhJcU4T3To7rB6Z0UpFe7GKQNzNn5HWWTyHenaMgg32tmyC_je45w-71pJM1-e3MTaSHD-F-cYQmv7QSGcXDPmZ6xDnUy_cXtw0ehvpPcvXEnkuIxgAWIK1Mt8GcjaprsgjHg3WnhEgL6HmrQ8IH2GbloKd3F6KAWATfGC1GmMIVFI2f6Q-J6lTTWUtbaXhOpH3OeJ3iXQcTNLhUXF_LheCBgSt4m33Ujow30LqWA7aOYZi6isnGHpdv1s2YfeXytz447BMj2DuAQ4uVN1ftdj4W2EGmh2Um-yLfxTXE6pt2UApQ1Clf6W4D4go8S7g8HFPheaIc6kP3AsyXVse1uFlF5KaXoDPlJ-e54NYbHkp0Hr2rG8fkew3P0jFTcozcdzmnEos5UKmPxuZZAc_SCkzG6CFE6pr9PXrb7cErI7eoiYyaJtQlc61MU3Xe1wDhAeqmwlmt84XEPZecWU1_mrOhEtJbv-a4R-rQcXEymt_AFfTPM_XgQlUt1qx3BBfvuMYHsi6BsnpE7qJ7t_UJwITJ_k-vBnexIifU8lmvnN0OJt0GjDfxdvA-_fTZ--YjiAxKLuQWY-GQczlmfCegCQxgTuPYdYVpOPO7GsVR3Uroel8b6af1fyown1OIxUs4iFZ1LpCBp0MuNERzVQNXWDSBsI1O0d2Hexsy-KZz-u7OQBciREkDGA";
+            let anchor_link = "";
+            
+            //******ONLOAD*****
+
+
+            //******FUNCTIONS*****
+            function downloadFile(urlToSend) {
+                var req = new XMLHttpRequest();
+                req.open("GET", urlToSend, true);
+                req.responseType = "blob";
+                req.onload = function (event) {
+                    var blob = req.response;
+                    var fileName = req.getResponseHeader("fileName") //if you have the fileName header available
+                    var link=document.createElement('a');
+                    link.href=window.URL.createObjectURL(blob);
+                    link.download=fileName;
+                    link.click();
+                };
+
+                req.send();
+            }
+
+            //******CLICKS*****
+
+            $('#parse_data').click(function(){
+                let data = $("#textarea_data").val().split(/\n/);
+                for(i in data){
+                    let value = data[i].trim();
+                    let val_arr = value.split("_");
+                    let new_val = val_arr[1];
+
+                    let download_link = link_part_1+new_val+link_part_2+new_val+link_part_3+link_part_4+token_part_5;
+
+                    anchor_link += '<a href="'+download_link+'" target="_blank">'+download_link+'</a><br><br>';
+
+                    //downloadFile(download_link);
+
+                    console.log(download_link);
+                }
+
+                $(".results").html(anchor_link);
+                
+            });
+
+        });
+        
+      </script>
+      <style>
+        
+      </style>
+   </head>
+   <style>
+    
+
+    </style>
+    
+   <body>
+        <div class="controls">
+            <h3>GRAB Images</h3>
+            <br />
+            <textarea id="textarea_data" style="width:200px;height:150px;">
+
+            </textarea>
+            <br />
+            <button id="parse_data">Parse</button>
+        </div>
+
+        <div class="results">
+
+        </div>
+   </body>
+        
+</html>

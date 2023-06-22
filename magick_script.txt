@@ -1,0 +1,24 @@
+magick -density 700 -quality 98 "C:\inkscape\img\arch.png" "C:\inkscape\img\arch.pnm"
+
+magick convert "C:\inkscape\img\arch.png"  -flatten "C:\inkscape\img\archz.png"
+
+----working commands <START> ----
+
+//convert to png to svg (create new png first)
+magick convert -flatten arch.png  archz.png
+magick convert -flatten arch.png  work/archz.png
+magick convert -flatten archz.png  archs.pnm
+potrace archs.pnm -s -o archx.svg //final out put
+
+
+//convert to png to eps
+magick convert archz.png  archz.bmp
+potrace archz.bmp -e -o archz.eps //final out put
+
+//convert to png to jpg
+magick convert archz.png  archz.jpg //convert the new png to jpg/final output
+
+----working commands <END> ----
+
+potrace "C:\inkscape\img\arch.pnm" -s -o "C:\inkscape\img\arch.svg"
+inkscape --export-plain-svg --export-filename="C:\inkscape\img\arch.svg" "C:\inkscape\img\arch.png"
